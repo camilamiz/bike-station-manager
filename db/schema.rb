@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_142750) do
+ActiveRecord::Schema.define(version: 2019_10_20_143713) do
 
   create_table "bike_statuses", force: :cascade do |t|
     t.string "description"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2019_10_20_142750) do
 
   create_table "stations", force: :cascade do |t|
     t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "document_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
