@@ -3,11 +3,12 @@
     <ul>
         <% @stations.each do |station| %>
             <li>
+                <% presenter = StationPresenter.new(station)%>
                 <p>
-                Bairro <%= station.neighborhood %> |
-                Bicicletas disponíveis <%= station.neighborhood %> |
-                Vagas disponíveis <%= station.neighborhood %> |
-                Capacidade <%= station.capacity %>
+                Bairro: <%= station.neighborhood %> |
+                Bicicletas disponíveis: <%= presenter.available_bikes_in_station %> |
+                Vagas disponíveis: <%= presenter.spots_available %> |
+                Capacidade: <%= station.capacity %>
             </li>
         <% end %>
     </ul>
