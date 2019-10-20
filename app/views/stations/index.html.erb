@@ -1,2 +1,14 @@
-<h1>Stations#index</h1>
-<p>Find me in app/views/stations/index.html.erb</p>
+<h1>Estações</h1>
+<div>
+    <ul>
+        <% @stations.each do |station| %>
+            <li>
+                <p>
+                Bairro <%= station.neighborhood %> |
+                Bicicletas disponíveis <%= station.neighborhood %> |
+                Vagas disponíveis <%= station.neighborhood %> |
+                Capacidade <%= station.capacity %>
+            </li>
+        <% end %>
+    </ul>
+</div>

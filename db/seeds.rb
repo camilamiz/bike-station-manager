@@ -14,10 +14,13 @@ BikeStatus.create([
 ])
 
 Station.create([
-    {capacity: 10},
-    {capacity: 15},
-    {capacity: 10},
-    {capacity: 20}
+    {capacity: 10, neiborhood: 'Vila Mariana'},
+    {capacity: 15, neiborhood: 'Sé'},
+    {capacity: 10, neiborhood: 'Paulista'},
+    {capacity: 20, neiborhood: 'Tatuapé'},
+    {capacity: 20, neiborhood: 'Mooca'},
+    {capacity: 15, neiborhood: 'Sumaŕe'},
+    {capacity: 20, neiborhood: 'Santana'}
 ])
 
 Bike.create([
