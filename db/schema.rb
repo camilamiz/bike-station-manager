@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_143713) do
+ActiveRecord::Schema.define(version: 2019_10_20_144327) do
 
   create_table "bike_statuses", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "bikes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "station_id"
+    t.integer "bike_status_id"
+    t.index ["bike_status_id"], name: "index_bikes_on_bike_status_id"
+    t.index ["station_id"], name: "index_bikes_on_station_id"
   end
 
   create_table "stations", force: :cascade do |t|
