@@ -1,2 +1,15 @@
-<h1>Trips#index</h1>
-<p>Find me in app/views/trips/index.html.erb</p>
+<h1>Viagens</h1>
+<div>
+    <ul>
+        <% @trips.each do |trip| %>
+            <li>
+                <p>
+                Usuário <%= trip.user.name %> | 
+                Bike <%= trip.bike_id%> |
+                Distância (m)<%= trip.travelled_distance_meter%> | 
+                Origem <%= trip.origin_station_id%> | Destino <%= trip.destiny_station_id%> | 
+                Início <%= trip.start_time%> | Fim <%= trip.end_time%> </p>
+            </li>
+        <% end %>
+    </ul>
+</div>
