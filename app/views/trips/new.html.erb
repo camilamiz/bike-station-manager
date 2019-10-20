@@ -1,2 +1,12 @@
-<h1>Trips#new</h1>
-<p>Find me in app/views/trips/new.html.erb</p>
+<h1>Alugue uma bike</h1>
+<div class="form col-xs-6 col-xs-offset-3">
+    <% station = Station.find(params['format'].to_i)%>
+    <% presenter = StationPresenter.new(station)%>
+    <p>Estação <%= station.neighborhood %></p>
+    <%= simple_form_for @trip do |f| %>
+        <%= f.input :bike_id, collection: presenter.available_bikes_in_station_by_id %>
+        <%= f.input :user_id, collection: @users, label_method: :second, value_method: :first %>
+        <%= f.input :origin_station_id, as: :hidden, :input_html => { :value => station.id }%>
+        <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+</div>
