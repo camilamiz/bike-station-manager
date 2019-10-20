@@ -6,9 +6,12 @@
                 <% presenter = StationPresenter.new(station)%>
                 <p>
                 Bairro: <%= station.neighborhood %> |
-                Bicicletas disponíveis: <%= presenter.available_bikes_in_station %> |
+                Bicicletas disponíveis: <%= presenter.available_bikes_in_station.count %> |
                 Vagas disponíveis: <%= presenter.spots_available %> |
                 Capacidade: <%= station.capacity %>
+                <% if presenter.available_bikes_in_station > 0 %>
+                    <%= link_to "Alugar uma bike", trips_new_path(station) %>
+                <% end %>
             </li>
         <% end %>
     </ul>
