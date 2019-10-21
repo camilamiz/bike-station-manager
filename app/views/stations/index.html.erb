@@ -1,16 +1,17 @@
 <h1>Estações</h1>
+<p><%= link_to 'Viagens', '/trips' %></p>
 <div>
     <ul>
         <% @stations.each do |station| %>
             <li>
                 <% presenter = StationPresenter.new(station)%>
                 <p>
-                Bairro: <%= station.neighborhood %> |
+                <%= link_to "Bairro: #{station.neighborhood}", "/stations/#{station.id}" %> |
                 Bicicletas disponíveis: <%= presenter.available_bikes_in_station.count %> |
                 Vagas disponíveis: <%= presenter.spots_available %> |
                 Capacidade: <%= station.capacity %>
-                <% if presenter.available_bikes_in_station > 0 %>
-                    <%= link_to "Alugar uma bike", trips_new_path(station) %>
+                <% if presenter.available_bikes_in_station.count > 0 %>
+                    <%= link_to "Alugar uma bike", '/trips/new' %>
                 <% end %>
             </li>
         <% end %>
