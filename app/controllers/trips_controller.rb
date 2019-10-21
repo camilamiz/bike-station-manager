@@ -1,11 +1,20 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :end_trip]
+  before_action :set_trip, only: [:show, :edit, :update]
 
   def index
     @trips = Trip.all
   end
 
   def show
+    @origin_station = Station.where(id: @trip.origin_station_id)
+    @user = User.find(@trip.user_id)
+
+    @destiny_stations = [] 
+    destiny_stations_objects = Station.all - @origin_station
+
+    destiny_stations_objects.each do |object|
+      @destiny_stations << [object.id, object.neighborhood]
+    end
   end
 
   def new
@@ -31,7 +40,21 @@ class TripsController < ApplicationController
     end
   end
 
-  def end_trip
+  def edit
+  end
+
+  def update
+    if @trip.update(trip_params)
+      @trip.end_time = Time.new
+      @trip.save
+      bike_status = BikeStatus.where(description: 'In station').first
+      bike = Bike.find(@trip.bike_id)
+      bike.bike_status_id = bike_status.id
+      bike.save
+      redirect_to trips_path, notice: 'Viagem finalizada!'
+    else
+      render :index
+    end
   end
 
   private
@@ -40,6 +63,6 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:origin_station_id, :bike_id, :user_id)
+    params.require(:trip).permit(:origin_station_id, :destiny_station_id, :travelled_distance_meter, :bike_id, :user_id)
   end
 end
