@@ -19,6 +19,6 @@ class StationPresenter < SimpleDelegator
     end
 
     def spots_available
-        @station.capacity - self.available_bikes_in_station
+        @station.capacity - self.available_bikes_in_station.count
     end
 end
