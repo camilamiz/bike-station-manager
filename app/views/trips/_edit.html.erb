@@ -1,0 +1,5 @@
+<%= simple_form_for @trip do |f| %>
+    <%= f.input :destiny_station_id, collection: @destiny_stations, label_method: :second, value_method: :first%>
+    <%= f.input :travelled_distance_meter %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
