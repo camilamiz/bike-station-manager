@@ -1,2 +1,12 @@
-<h1>Stations#show</h1>
-<p>Find me in app/views/stations/show.html.erb</p>
+<h1>Estação <%= @station.neighborhood%></h1>
+<div>
+    <% presenter = StationPresenter.new(@station)%>
+    <p>
+        Bairro: <%= @station.neighborhood %> |
+        Bicicletas disponíveis: <%= presenter.available_bikes_in_station.count %> |
+        Vagas disponíveis: <%= presenter.spots_available %> |
+        Capacidade: <%= @station.capacity %>
+    </p>
+    <p><%= link_to 'Voltar', '/'%></p>
+</div>
+
