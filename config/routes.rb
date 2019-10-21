@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :stations, only: [:index, :show]
-  resources :bikes, only: [:index, :show]
-  resources :users, only: [:index, :show]
-  resources :trips, only: [:index, :show, :new, :create]
-  patch 'trips', to: 'trips#end_trip'
+  root to: 'stations#index'
+  
+  get '/stations', to: 'stations#index'
+  get '/stations/:id', to: 'stations#show'
+  
+  resources :trips, except: [:destroy]
+
+  # resources :bikes, only: [:index, :show]
+  # resources :users, only: [:index, :show]
 end
