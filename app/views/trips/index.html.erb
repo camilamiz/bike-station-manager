@@ -1,14 +1,28 @@
-<h1>Bikes alugadas</h1>
+<h1>Viagens</h1>
 <div>
     <ul>
         <% @trips.each do |trip| %>
             <li>
                 <p>
-                Usuário: <%= trip.user.name %> | 
-                Bike: <%= trip.bike_id%> |
-                Distância: (m)<%= trip.travelled_distance_meter%> | 
-                Origem: <%= trip.origin_station_id%> | Destino <%= trip.destiny_station_id%> | 
-                Início: <%= trip.start_time%> | Fim <%= trip.end_time%> </p>
+                    Usuário: <%= trip.user.name %> | 
+                    Bike: <%= trip.bike_id%>
+                </p>
+                <p>
+                    Origem: <%= Station.where(id: trip.origin_station_id).first.neighborhood%> | 
+                    Iniciada em: <%= trip.start_time%> 
+                </p> 
+                    <% if trip.destiny_station_id == nil %>
+                        <%= link_to 'Finalizar esta viagem', "trips/#{trip.id}" %>
+                    <% else %>
+                    <p>    
+                        Bairro de destino: <%= Station.where(id: trip.destiny_station_id).first.neighborhood %> | 
+                        Finalizada em: <%= trip.end_time %>
+                    </p> 
+                    <p>
+                        Distância (m): <%= trip.travelled_distance_meter%> 
+                    </p>
+                    <% end %>
+                </p>
             </li>
         <% end %>
     </ul>
