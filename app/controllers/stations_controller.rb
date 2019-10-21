@@ -4,6 +4,6 @@ class StationsController < ApplicationController
   end
 
   def show
-    @Station = Station.find(params[:id])
+    @station = Station.find(params[:id])
   end
 end
