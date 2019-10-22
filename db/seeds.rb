@@ -9,8 +9,7 @@ User.create([
 BikeStatus.create([
     {description: 'In station'}, 
     {description: 'In use'}, 
-    {description: 'Needs repair'}, 
-    {description: 'Being repaired'}
+    {description: 'Needs repair'}
 ])
 
 Station.create([
@@ -26,7 +25,19 @@ Station.create([
 Bike.create([
     {station_id: 1, bike_status_id: 1},
     {station_id: 2, bike_status_id: 2},
-    {station_id: 3, bike_status_id: 1}
+    {station_id: 3, bike_status_id: 3},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 3},
+    {station_id: 3, bike_status_id: 1},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 3, bike_status_id: 1},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 3, bike_status_id: 3},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 3, bike_status_id: 1},
 ])
 
 Trip.create([
