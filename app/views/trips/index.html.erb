@@ -1,9 +1,11 @@
 <h1>Viagens</h1>
+<p><%= link_to "Estações", '/stations' %></p>
 <div>
     <ul>
         <% @trips.each do |trip| %>
             <li>
-                <p>
+                <p> 
+                    <%= link_to "Viagem: #{trip.id}", trip_path(trip) %> | 
                     Usuário: <%= trip.user.name %> | 
                     Bike: <%= trip.bike_id%>
                 </p>

@@ -11,7 +11,7 @@
                 Vagas disponíveis: <%= presenter.spots_available %> |
                 Capacidade: <%= station.capacity %>
                 <% if presenter.available_bikes_in_station.count > 0 %>
-                    <%= link_to "Alugar uma bike", '/trips/new' %>
+                    <%= link_to "Alugar uma bike", new_trip_path(station) %>
                 <% end %>
             </li>
         <% end %>
