@@ -1,2 +1,15 @@
-<h1>Bikes#index</h1>
-<p>Find me in app/views/bikes/index.html.erb</p>
+<h1>Bikes</h1>
+<p><%= link_to 'Estações', '/stations' %> | <%= link_to 'Viagens', '/trips' %></p>
+<div>
+    <ul>
+        <% @bikes.each do |bike| %>
+            <li>
+                <% presenter = BikePresenter.new(bike)%>
+                <p>
+                # <%= bike.id %>
+                <%= link_to "Bairro: #{presenter.current_station.neighborhood}", "/stations/#{presenter.current_station.id}" %> |
+                Status: <%= presenter.current_status %>
+            </li>
+        <% end %>
+    </ul>
+</div>
