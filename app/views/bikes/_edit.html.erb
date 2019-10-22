@@ -1,4 +1,4 @@
 <%= simple_form_for @bike do |f| %>
-    <%= f.input :bike_status_id, collection: @available_statuses, label_method: :second, value_method: :first%>
+    <%= f.input :bike_status_id, label: 'New bike status ', collection: @available_statuses, label_method: :second, value_method: :first%>
     <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
