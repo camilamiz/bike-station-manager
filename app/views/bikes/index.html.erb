@@ -9,6 +9,7 @@
                 # <%= bike.id %>
                 <%= link_to "Bairro: #{presenter.current_station.neighborhood}", "/stations/#{presenter.current_station.id}" %> |
                 Status: <%= presenter.current_status %>
+                <%= link_to "Mudar status", bike_path(bike) %>
             </li>
         <% end %>
     </ul>

@@ -1,2 +1,9 @@
-<h1>Bikes#show</h1>
-<p>Find me in app/views/bikes/show.html.erb</p>
+<h1>Bike #<%= @bike.id%></h1>
+<div>
+    <% presenter = BikePresenter.new(@bike)%>
+    <p>
+        Bairro: <%= presenter.current_station.neighborhood %> |
+        Status: <%= presenter.current_status %>
+    </p>
+    <%= render 'edit' %>
+</div>
