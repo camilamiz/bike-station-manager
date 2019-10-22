@@ -50,6 +50,7 @@ class TripsController < ApplicationController
       bike_status = BikeStatus.where(description: 'In station').first
       bike = Bike.find(@trip.bike_id)
       bike.bike_status_id = bike_status.id
+      bike.station_id = @trip.destiny_station_id
       bike.save
       redirect_to trips_path, notice: 'Viagem finalizada!'
     else
