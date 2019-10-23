@@ -27,8 +27,11 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(trip_params)
-    @trip.start_time = Time.new
+    bike_policy = BikePolicy.new(@trip.bike)
+    if bike_policy.available?
+      @trip = Trip.new(trip_params)
+      @trip.start_time = Time.new
+    end
     if @trip.save
       bike_status = BikeStatus.where(description: 'In use').first
       bike = Bike.find(trip_params[:bike_id])
