@@ -7,9 +7,15 @@ class BikesController < ApplicationController
 
   def show
     @bike = Bike.find(params[:id])
-    @available_statuses = []
-    available_status_objects = BikeStatus.all - BikeStatus.where(id: @bike.bike_status_id)
     
+    @available_statuses = []
+    current_bike_status = @bike.bike_status.description
+    if current_bike_status == 'In station'
+      available_status_objects = BikeStatus.where(description: 'In use').or(BikeStatus.where(description: 'Needs repair'))
+    else 
+      available_status_objects = BikeStatus.where(description: 'In station')
+    end
+
     available_status_objects.each do |status|
       @available_statuses << [status.id, status.description]
     end
@@ -19,6 +25,8 @@ class BikesController < ApplicationController
   end
 
   def update
+    @bike.update(bike_params)
+    redirect_to bike_path(@bike)
   end
 
   private
