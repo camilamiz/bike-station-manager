@@ -27,10 +27,12 @@ class TripsController < ApplicationController
   end
 
   def create
-    bike_policy = BikePolicy.new(@trip.bike)
-    if bike_policy.available?
+    bike = Bike.find(params['trip']['bike_id'].to_i)
+    if bike.bike_status.description == 'In station'
       @trip = Trip.new(trip_params)
       @trip.start_time = Time.new
+    else
+      render :new
     end
     if @trip.save
       bike_status = BikeStatus.where(description: 'In use').first
