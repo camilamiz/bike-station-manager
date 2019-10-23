@@ -1,13 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe BikeStatus, :type => :model do
-  
-    before(:all) do
-      @bike_status1 = create(:bike_status)
-    end
-    
     it "is valid with valid attributes" do
-      expect(@bike_status1).to be_valid
+        bike_status1 = build(:bike_status)
+        expect(bike_status1).to be_valid
     end
 
     it "has a description" do
@@ -16,7 +12,8 @@ RSpec.describe BikeStatus, :type => :model do
     end
 
     it "has a unique description" do
-        bike_status2 = build(:bike_status, description: 'In station')
+        bike_status1 = create(:bike_status)
+        bike_status2 = build(:bike_status)
         expect(bike_status2).to_not be_valid
     end
 end

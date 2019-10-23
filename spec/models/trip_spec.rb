@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe 'Trip', type: :model do
+RSpec.describe Trip, type: :model do
   context 'when saving a new trip' do
     it 'the rented bike cannot need repair or in use' do
       bike_status = BikeStatus.create!(description: 'Needs repair')
