@@ -8,6 +8,7 @@
                 <p>
                 <%= link_to "Bairro: #{station.neighborhood}", "/stations/#{station.id}" %> |
                 Bicicletas disponíveis: <%= presenter.available_bikes_in_station.count %> |
+                Bicicletas que precisam de reparos: <%= presenter.need_to_be_repaired.count %> |
                 Vagas disponíveis: <%= presenter.spots_available %> |
                 Capacidade: <%= station.capacity %>
                 <% if presenter.available_bikes_in_station.count > 0 %>
