@@ -3,6 +3,8 @@ class Trip < ApplicationRecord
   belongs_to :user
 
   validates :start_time, presence: true
+  validates :bike_id, presence: true
+  validates :station_id, presence: true
 
   validate :disallow_park_in_origin
 
