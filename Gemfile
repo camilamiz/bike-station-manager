@@ -61,6 +61,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
