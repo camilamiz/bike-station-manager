@@ -22,28 +22,8 @@ After that, run the command below to start the server
 And then access http://localhost:3000/ in your browser to use the system.
 
 <h2>Running tests</h2>
-
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The automated tests where built using Rspec Rails version 3.8.
+For now, there are only unit tests available for the models in this project and in order to run them, run the following command in the terminal
+<pre>
+ <code>rspec spec/models</code>
+</pre>
