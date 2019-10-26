@@ -42,7 +42,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 3.8'
   gem 'httparty'
-  gem 'dotenv'
+  gem 'dotenv-rails'
 end
 
 group :development do
