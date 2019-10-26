@@ -23,7 +23,7 @@ And then access http://localhost:3000/ in your browser to use the system.
 
 <h2>Running tests</h2>
 The automated tests where built using Rspec Rails version 3.8.
-For now, there are only unit tests available for the models in this project and in order to run them, run the following command in the terminal
+For now, there are only unit tests available for the models and partally for the controllers in this project and in order to run them, run the following command in the terminal
 <pre>
- <code>rspec spec/models</code>
+ <code>rspec spec</code>
 </pre>
