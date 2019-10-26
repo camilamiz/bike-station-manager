@@ -44,6 +44,23 @@ Bike.create([
     {station_id: 1, bike_status_id: 1},
     {station_id: 2, bike_status_id: 2},
     {station_id: 3, bike_status_id: 1},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 3, bike_status_id: 3},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 3, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 3},
+    {station_id: 3, bike_status_id: 1},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 2, bike_status_id: 1},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 3, bike_status_id: 3},
+    {station_id: 1, bike_status_id: 1},
+    {station_id: 2, bike_status_id: 2},
+    {station_id: 3, bike_status_id: 1}
 ])
 
 Trip.create([
