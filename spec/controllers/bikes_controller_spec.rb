@@ -17,7 +17,7 @@ RSpec.describe BikesController, :type => :controller do
     end
     
     describe "GET #show" do
-        it "assigns the requested contact to @contact" do
+        it "assigns the requested bike to @bike" do
             bike = create(:bike)
             get :show, params: {id: bike.id}
             expect(assigns(:bike)).to eq(bike)
