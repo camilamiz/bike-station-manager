@@ -3,6 +3,10 @@ class StationPresenter < SimpleDelegator
         @station = station        
     end
 
+    def all_bikes
+        Bike.where(station_id: @station.id)
+    end
+
     def available_bikes_in_station
         in_station_id = BikeStatus.where(description: 'In station').first.id
         Bike.where(station_id: @station.id, bike_status_id: in_station_id)
