@@ -5,6 +5,4 @@ Rails.application.routes.draw do
   
   resources :trips, except: [:destroy]
   resources :bikes, only: [:index, :show, :edit, :update]
-
-  # resources :users, only: [:index, :show]
 end
