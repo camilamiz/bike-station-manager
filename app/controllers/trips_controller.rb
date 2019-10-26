@@ -52,27 +52,37 @@ class TripsController < ApplicationController
     end
   
     def update
-      if @trip.update(trip_params)
-        @trip.end_time = Time.new
-        @trip.save
-        bike_status = BikeStatus.where(description: 'In station').first
-        bike = Bike.find(@trip.bike_id)
-        bike.bike_status_id = bike_status.id
-        bike.station_id = @trip.destiny_station_id
-        bike.save
-        
-        send_api_trip_notification(@trip)
-        if @response.code == 201
-            flash[:notice] = 'Viagem finalizada!'
-            redirect_to trip_path(@trip)
-        else
-            flash[:response_errors] = @response.message
-            redirect_to trip_path(@trip)
-        end
-
-      else
-        flash[:trip_errors] = @trip.errors.full_messages
+      station = Station.find(trip_params['destiny_station_id'].to_i)
+      all_bikes_in_station = StationPresenter.new(station).all_bikes.count
+      
+      if (all_bikes_in_station + 1) > station.capacity
+        flash[:notice] = 'Finalizar a viagem em outra estação, pois está encontra-se cheia.'
         redirect_to trip_path(@trip)
+      else
+
+        if @trip.update(trip_params)
+          @trip.end_time = Time.new
+          @trip.save
+          bike_status = BikeStatus.where(description: 'In station').first
+          bike = Bike.find(@trip.bike_id)
+          bike.bike_status_id = bike_status.id
+          bike.station_id = @trip.destiny_station_id
+          bike.save 
+          
+          send_api_trip_notification(@trip)
+          
+          if @response.code == 201
+              flash[:notice] = 'Viagem finalizada!'
+              redirect_to trip_path(@trip)
+          else
+              flash[:notice] = @response.message
+              redirect_to trip_path(@trip)
+          end
+        
+        else
+          flash[:trip_errors] = @trip.errors.full_messages
+          redirect_to trip_path(@trip)
+        end
       end
     end
   
