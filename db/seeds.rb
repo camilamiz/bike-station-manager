@@ -3,7 +3,13 @@ require 'faker'
 User.create([
     {name: Faker::Name.name, email: Faker::Internet.email, document_number: '123456678'},
     {name: Faker::Name.name, email: Faker::Internet.email, document_number: '123462278'},
-    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213456678'},
+    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213456677'},
+    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213456673'},
+    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213456671'},
+    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213456778'},
+    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213456555'},
+    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213459999'},
+    {name: Faker::Name.name, email: Faker::Internet.email, document_number: '213452222'}
 ])
 
 BikeStatus.create([
@@ -13,13 +19,13 @@ BikeStatus.create([
 ])
 
 Station.create([
-    {capacity: 10, neiborhood: 'Vila Mariana'},
-    {capacity: 15, neiborhood: 'Sé'},
-    {capacity: 10, neiborhood: 'Paulista'},
-    {capacity: 20, neiborhood: 'Tatuapé'},
-    {capacity: 20, neiborhood: 'Mooca'},
-    {capacity: 15, neiborhood: 'Sumaŕe'},
-    {capacity: 20, neiborhood: 'Santana'}
+    {capacity: 10, neighborhood: 'Vila Mariana'},
+    {capacity: 15, neighborhood: 'Sé'},
+    {capacity: 10, neighborhood: 'Paulista'},
+    {capacity: 20, neighborhood: 'Tatuapé'},
+    {capacity: 20, neighborhood: 'Mooca'},
+    {capacity: 15, neighborhood: 'Sumaŕe'},
+    {capacity: 20, neighborhood: 'Santana'}
 ])
 
 Bike.create([
@@ -58,15 +64,5 @@ Trip.create([
         user_id: 2, 
         origin_station_id: 2, 
         destiny_station_id: 1
-    },
-    {
-        start_time: Time.now, 
-        end_time: Time.now, 
-        travelled_distance_meter: 3300,
-        bike_id: 2, 
-        user_id: 3, 
-        origin_station_id: 4, 
-        destiny_station_id: 2
     }
-
 ])
