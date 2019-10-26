@@ -1,4 +1,7 @@
+require 'httparty'
+
 class TripsController < ApplicationController
+    include HTTParty
     before_action :set_trip, only: [:show, :edit, :update]
   
     def index
@@ -57,9 +60,19 @@ class TripsController < ApplicationController
         bike.bike_status_id = bike_status.id
         bike.station_id = @trip.destiny_station_id
         bike.save
-        redirect_to trips_path, notice: 'Viagem finalizada!'
+        
+        send_api_trip_notification(@trip)
+        if @response.code == 201
+            flash[:notice] = 'Viagem finalizada!'
+            redirect_to trip_path(@trip)
+        else
+            flash[:response_errors] = @response.message
+            redirect_to trip_path(@trip)
+        end
+
       else
-        render :index
+        flash[:trip_errors] = @trip.errors.full_messages
+        redirect_to trip_path(@trip)
       end
     end
   
@@ -71,4 +84,19 @@ class TripsController < ApplicationController
     def trip_params
       params.require(:trip).permit(:origin_station_id, :destiny_station_id, :travelled_distance_meter, :bike_id, :user_id)
     end
-  end
+
+    def send_api_trip_notification(trip)
+        access = ENV["ACCESS_API_KEY"]
+        @response = HTTParty.post('https://springfield-biketipovc.herokuapp.com/trips', 
+        :body => {  user_id: trip.user_id,
+                    bike_id: trip.bike_id,
+                    started_at: "#{trip.start_time}",
+                    finished_at: "#{trip.end_time}",
+                    travelled_distance: "#{trip.travelled_distance_meter.to_f}",
+                    origin: { station_id: trip.origin_station_id},
+                    origin: { destination_id: trip.destiny_station_id }
+                }.to_json,
+        :headers => { 'Content-Type' => 'application/json', 'Authorization' => "Token #{access}" })
+        return @response
+    end
+end
