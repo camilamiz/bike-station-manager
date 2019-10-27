@@ -63,6 +63,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'rails-controller-testing'
+  gem 'rubocop-rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
