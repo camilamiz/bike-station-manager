@@ -55,13 +55,14 @@ class TripsController < ApplicationController
       all_bikes_in_station = StationPresenter.new(station).all_bikes.count
       
       if (all_bikes_in_station + 1) > station.capacity
-        flash[:notice] = 'Finalizar a viagem em outra estação, pois está encontra-se cheia.'
+        flash[:notice] = 'Finalizar a viagem em outra estação, pois esta encontra-se cheia.'
         redirect_to trip_path(@trip)
       else
-
         if @trip.update(trip_params)
           @trip.end_time = Time.new
+          @trip.value = calculate_trip_value(@trip)
           @trip.save
+
           bike_status = BikeStatus.where(description: 'In station').first
           bike = Bike.find(@trip.bike_id)
           bike.bike_status_id = bike_status.id
@@ -77,7 +78,6 @@ class TripsController < ApplicationController
               flash[:notice] = @response.message
               redirect_to trip_path(@trip)
           end
-        
         else
           flash[:trip_errors] = @trip.errors.full_messages
           redirect_to trip_path(@trip)
@@ -107,5 +107,22 @@ class TripsController < ApplicationController
                 }.to_json,
         :headers => { 'Content-Type' => 'application/json', 'Authorization' => "Token #{access}" })
         return @response
+    end
+
+    def calculate_trip_value(trip)
+      time_delta = (trip.end_time - trip.start_time)
+      to_minutes = (time_delta / 60).to_i
+
+      if to_minutes < 61
+        value = 0
+      else
+        exceeding_minutes = to_minutes - 60
+        if to_minutes % 5 == 0  
+          value = 10 + (((exceeding_minutes)/5)*0.2).round(2)
+        else
+          value = 10 + (((exceeding_minutes/5) + 1)*0.2).round(2)
+        end
+      end
+      return value
     end
 end
