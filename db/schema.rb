@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_162502) do
+ActiveRecord::Schema.define(version: 2019_10_27_150353) do
 
   create_table "bike_statuses", force: :cascade do |t|
     t.string "description"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_10_20_162502) do
     t.integer "user_id"
     t.integer "origin_station_id"
     t.integer "destiny_station_id"
+    t.float "value"
     t.index ["bike_id"], name: "index_trips_on_bike_id"
     t.index ["destiny_station_id"], name: "index_trips_on_destiny_station_id"
     t.index ["origin_station_id"], name: "index_trips_on_origin_station_id"
