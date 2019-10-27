@@ -5,7 +5,7 @@ FactoryBot.define do
     document_number {"12345678901"}
   end
   factory :station do
-    capacity 20
+    capacity { 20 }
     neighborhood {Faker::Science.scientist}
   end
   factory :bike_status do

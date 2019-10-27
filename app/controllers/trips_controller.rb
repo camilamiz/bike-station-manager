@@ -30,8 +30,8 @@ class TripsController < ApplicationController
     end
   
     def create
-      bike = Bike.find(params['trip']['bike_id'].to_i)
-      if bike.bike_status.description == 'In station'
+      @bike = Bike.find(params['trip']['bike_id'].to_i)
+      if @bike.bike_status.description == 'In station'
         @trip = Trip.new(trip_params)
         @trip.start_time = Time.new
       else
@@ -39,9 +39,8 @@ class TripsController < ApplicationController
       end
       if @trip.save
         bike_status = BikeStatus.where(description: 'In use').first
-        bike = Bike.find(trip_params[:bike_id])
-        bike.bike_status_id = bike_status.id
-        bike.save
+        @bike.bike_status_id = bike_status.id
+        @bike.save
         redirect_to trip_path(@trip), notice: 'Bike alugada!'
       else
         render :new
