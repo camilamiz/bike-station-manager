@@ -55,7 +55,7 @@ class TripsController < ApplicationController
       all_bikes_in_station = StationPresenter.new(station).all_bikes.count
       
       if (all_bikes_in_station + 1) > station.capacity
-        flash[:notice] = 'Finalizar a viagem em outra estação, pois está encontra-se cheia.'
+        flash[:notice] = 'Finalizar a viagem em outra estação, pois esta encontra-se cheia.'
         redirect_to trip_path(@trip)
       else
         if @trip.update(trip_params)
@@ -116,10 +116,11 @@ class TripsController < ApplicationController
       if to_minutes < 61
         value = 0
       else
-        if to_minutes % 5 == 0
-          value = 10 + (((to_minutes)/5)*0.2).round(2)
+        exceeding_minutes = to_minutes - 60
+        if to_minutes % 5 == 0  
+          value = 10 + (((exceeding_minutes)/5)*0.2).round(2)
         else
-          value = 10 + (((to_minutes/5) + 1)*0.2).round(2)
+          value = 10 + (((exceeding_minutes/5) + 1)*0.2).round(2)
         end
       end
       return value
