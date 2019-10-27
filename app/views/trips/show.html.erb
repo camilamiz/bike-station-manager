@@ -1,5 +1,5 @@
 <p class="flash-notice"><%= flash[:notice] %></p>
-<h1>Viagem iniciada em <%= @trip.start_time %></h1>
+<h1>Viagem iniciada em <%= @trip.start_time.strftime("%d/%m/%Y às %H:%M") %></h1>
 <p><%= link_to 'Viagens', '/trips'%> | <%= link_to 'Estações', '/stations'%> </p>
 <div>
     <p>
@@ -12,7 +12,8 @@
     <% else %>
         <p>
             Bairro de destino: <%= Station.where(id: @trip.destiny_station_id).first.neighborhood %> | 
-            Finalizada em: <%= @trip.end_time %>
+            Finalizada em: <%= @trip.end_time.strftime("%d/%m/%Y às %H:%M") %> | 
+            Valor da viagem: R$ <%= @trip.value %>
         </p>
     <% end %>
 </div>

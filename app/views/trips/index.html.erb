@@ -11,17 +11,17 @@
                 </p>
                 <p>
                     Origem: <%= Station.where(id: trip.origin_station_id).first.neighborhood%> | 
-                    Iniciada em: <%= trip.start_time%> 
+                    Iniciada em: <%= trip.start_time.strftime("%d/%m/%Y às %H:%M")%> 
                 </p> 
                     <% if trip.destiny_station_id == nil %>
                         <%= link_to 'Finalizar esta viagem', "trips/#{trip.id}" %>
                     <% else %>
                     <p>    
                         Bairro de destino: <%= Station.where(id: trip.destiny_station_id).first.neighborhood %> | 
-                        Finalizada em: <%= trip.end_time %>
+                        Finalizada em: <%= trip.end_time.strftime("%d/%m/%Y às %H:%M") %>
                     </p> 
                     <p>
-                        Distância (m): <%= trip.travelled_distance_meter%> 
+                        Distância (m): <%= trip.travelled_distance_meter%> | Valor da viagem: R$ <%= trip.value %>
                     </p>
                     <% end %>
                 </p>
