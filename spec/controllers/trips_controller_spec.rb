@@ -29,4 +29,14 @@ RSpec.describe TripsController, :type => :controller do
             expect(response).to render_template("show")
         end 
     end
+
+    describe "POST create" do
+        context "with valid attributes" do
+            it "renders the :show template after create" do
+                trip = create(:trip)
+                get :show, params: {id: trip.id}
+                expect(response).to render_template("show")
+            end 
+        end
+    end
 end
